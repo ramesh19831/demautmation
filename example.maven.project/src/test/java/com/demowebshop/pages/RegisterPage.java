@@ -28,6 +28,7 @@ public class RegisterPage {
 	static By passwordtxt = By.id("Password");
 	static By confpwdtxt = By.id("ConfirmPassword");
 	static	By registerbtn = By.id("register-button");
+	static	By logout = By.cssSelector("a.ico-logout");
 	
 	static By wrongemailmsg = By.xpath("//span[@for='Email']");
 	static By passwordnotmatchmsg = By.xpath("//span[@for='ConfirmPassword']");
@@ -66,5 +67,9 @@ public class RegisterPage {
 	
 	public String getPasswordDoesntMatchMsg() {
 		return driver.findElement(passwordnotmatchmsg).getText();
+	}
+	
+	public void clickLogout() {
+		driver.findElement(logout).click();
 	}
 }
