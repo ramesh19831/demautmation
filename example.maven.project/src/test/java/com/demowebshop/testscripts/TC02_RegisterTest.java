@@ -42,7 +42,8 @@ public class TC02_RegisterTest extends BasePage {
 
 	@DataProvider(name = "EmptyData")
 	public Object[][] EmptyData() {
-		return new Object[][] { { "", "", "", "", "" }, };
+		return new Object[][] { { "First name is required.", "Last name is required.", "Email is required.", 
+			"Password is required.", "Password is required." }, };
 	}
 
 	@Test(enabled = false, dataProvider = "register")
@@ -116,28 +117,21 @@ public class TC02_RegisterTest extends BasePage {
 		registerPage.clickRegisterbtn();
 		Thread.sleep(2000);
 
-		test.log(Status.PASS, "Enter the First Name : " + Errormsgfirstname);
-		Assert.assertEquals(Errormsgfirstname, "First name is required.");
+		test.log(Status.PASS, "Verify First name error mesgae : " + Errormsgfirstname);
+		Assert.assertEquals(Errormsgfirstname, registerPage.FirstnameErrorMsg());
 
-		test.log(Status.PASS, "Enter the Last Name : " + Errormsglastname);
-		Assert.assertEquals(Errormsglastname, "Last name is required.");
+		test.log(Status.PASS, "Verify Last name error mesgae :  " + Errormsglastname);
+		Assert.assertEquals(Errormsglastname, registerPage.LastnameErrorMsg());
 
-		test.log(Status.PASS, "Enter the Email Address : " + Errormsgemail);
-		Assert.assertEquals(Errormsgemail, "Email is required.");
+		test.log(Status.PASS, "Verify Email error mesgae :  " + Errormsgemail);
+		Assert.assertEquals(Errormsgemail, registerPage.EmailErrorMsg());
 
-		test.log(Status.PASS, "Enter the Password  : " + Errormsgpassword);
-		Assert.assertEquals(Errormsgpassword, "Password is required.");
+		test.log(Status.PASS, "Verify Password error mesgae :  " + Errormsgpassword);
+		Assert.assertEquals(Errormsgpassword, registerPage.PasswordErrorMsg());
 
-		test.log(Status.PASS, "Enter the Confirm Passwd : " + ErrormsgconfPwd);
-		Assert.assertEquals(ErrormsgconfPwd, "Password is required.");
-
-//     	String	actualWrongEmailMsg = registerPage.getWrongEmailMsg();
-//		Assert.assertEquals(actualWrongEmailMsg, wrongemailmsg1);
-//		test.log(Status.PASS, "Wrong Email Address is : "+ wrongemailmsg1);
-//	  	String	actualpwdnotmatchmsg = registerPage.getPasswordDoesntMatchMsg();
-//	 
-//	  	Assert.assertEquals(actualpwdnotmatchmsg, pwdnotmatchmsg);
-//	   test.log(Status.PASS, "Password not macth : "+ pwdnotmatchmsg);
+		test.log(Status.PASS, "Verify Confirm Password error mesgae :  " + ErrormsgconfPwd);
+		Assert.assertEquals(ErrormsgconfPwd, registerPage.ConfirmPwdErrorMsg());
+   	
 	}
 
 	@AfterSuite

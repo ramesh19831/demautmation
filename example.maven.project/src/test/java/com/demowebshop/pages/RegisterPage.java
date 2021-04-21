@@ -33,11 +33,11 @@ public class RegisterPage {
 	static By wrongemailmsg = By.xpath("//span[@for='Email']");
 	static By passwordnotmatchmsg = By.xpath("//span[@for='ConfirmPassword']");
 
-	static By Errormsgfirstname = By.xpath("//span[@for='FirstName']");
-	static By Errormsglastname = By.xpath("//span[@for='LastName']");
-	static By Errormsgemail = By.xpath("//span[@for='Email']");
-	static By Errormsgpassword = By.xpath("//span[@for='Password']");
-	static By ErrormsgconfPwd = By.xpath("//span[@for='ConfirmPassword']");
+	static By firstnameErrormsg = By.xpath("//span[@for='FirstName']");
+	static By lastnameErrormsg = By.xpath("//span[@for='LastName']");
+	static By emailErrormsg = By.xpath("//span[@for='Email']");
+	static By passwordErrormsg = By.xpath("//span[@for='Password']");
+	static By confPwdErrormsg = By.xpath("//span[@for='ConfirmPassword']");
 
 	public void clickMaleRadioBtn() {
 		driver.findElement(gendermalerb).click();
@@ -79,24 +79,30 @@ public class RegisterPage {
 		driver.findElement(logout).click();
 	}
 
-	public void FirstnameErrorMsg() {
-		driver.findElement(Errormsgfirstname).sendKeys("");
+	public String FirstnameErrorMsg() {
+
+		String FErroeMsg = driver.findElement(firstnameErrormsg).getText();
+		return FErroeMsg;
 	}
 
-	public void LastnameErrorMsg() {
-		driver.findElement(Errormsglastname).sendKeys("");
+	public String LastnameErrorMsg() {
+		String LErrorMsg = driver.findElement(lastnameErrormsg).getText();
+		return LErrorMsg;
 	}
 
-	public void EmailErrorMsg() {
-		driver.findElement(Errormsgemail).sendKeys("");
+	public String EmailErrorMsg() {
+		String EErrorsg = driver.findElement(emailErrormsg).getText();
+		return EErrorsg;
 	}
 
-	public void PasswordErrorMsg() {
-		driver.findElement(Errormsgpassword).sendKeys("");
+	public String PasswordErrorMsg() {
+		String PErrorMsg = driver.findElement(passwordErrormsg).getText();
+		return PErrorMsg;
 	}
 
-	public void ConfirmPwdErrorMsg() {
-		driver.findElement(ErrormsgconfPwd).sendKeys("");
+	public String ConfirmPwdErrorMsg() {
+		String CPErrorMsg = driver.findElement(confPwdErrormsg).getText();
+		return CPErrorMsg;
 	}
 
 }
