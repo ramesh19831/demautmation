@@ -32,7 +32,7 @@ public class RegisterPage {
 
 	static By wrongemailmsg = By.xpath("//span[@for='Email']");
 	static By passwordnotmatchmsg = By.xpath("//span[@for='ConfirmPassword']");
-	
+
 	static By Errormsgfirstname = By.xpath("//span[@for='FirstName']");
 	static By Errormsglastname = By.xpath("//span[@for='LastName']");
 	static By Errormsgemail = By.xpath("//span[@for='Email']");
@@ -82,11 +82,11 @@ public class RegisterPage {
 	public void FirstnameErrorMsg() {
 		driver.findElement(Errormsgfirstname).sendKeys("");
 	}
-	
+
 	public void LastnameErrorMsg() {
 		driver.findElement(Errormsglastname).sendKeys("");
 	}
-	
+
 	public void EmailErrorMsg() {
 		driver.findElement(Errormsgemail).sendKeys("");
 	}
@@ -98,6 +98,5 @@ public class RegisterPage {
 	public void ConfirmPwdErrorMsg() {
 		driver.findElement(ErrormsgconfPwd).sendKeys("");
 	}
-	
-		
+
 }
