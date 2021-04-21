@@ -39,7 +39,13 @@ public class TC02_RegisterTest extends BasePage{
 			 };
 	}
 	
-	@Test(dataProvider = "register")
+	@DataProvider(name = "EmptyData")
+	public Object[][] EmptyData() {
+		return new Object[][] { {"", "","" ,"",""},
+			 };
+	}
+	
+	@Test(enabled=false, dataProvider = "register")
 	public void TS01_VerifyRegisterWithValidData(String fname, String lname, String email, String pwd, String confpwd) throws InterruptedException {
 		test = extent.createTest("TC01_Validate the Demo Web Shop RegistrationScreen with Valid Data");
 		test.log(Status.PASS, "Click on Register Link");
@@ -64,7 +70,7 @@ public class TC02_RegisterTest extends BasePage{
 			
 	}
 
-	@Test(dataProvider = "Invalidregister")
+	@Test(enabled=false,dataProvider = "Invalidregister")
 	public void TS02_VerifyRegisterWithInvaidData(String fname, String lname, String email, String pwd, String confpwd,
 			String wrongemailmsg1, String pwdnotmatchmsg) throws InterruptedException{
 		Thread.sleep(1000);
@@ -93,6 +99,44 @@ public class TC02_RegisterTest extends BasePage{
 	 
 	  	Assert.assertEquals(actualpwdnotmatchmsg, pwdnotmatchmsg);
 	   test.log(Status.PASS, "Password not macth : "+ pwdnotmatchmsg);
+	}
+	
+	@Test(dataProvider = "EmptyData")
+	public void TS02_VerifyRegisterWithEmptyData(String Errormsgfirstname, String Errormsglastname, String Errormsgemail,
+			String Errormsgpassword, String ErrormsgconfPwd) throws InterruptedException{
+		
+		Thread.sleep(1000);
+		test = extent.createTest("TC02_Validate the Demo Web Shop RegistrationScreen with Empty Data");
+		
+		test.log(Status.PASS, "Click on Register Link");
+		homePage.clickRegisterLink();
+	
+		test.log(Status.PASS, "Click on Register Button");
+		registerPage.clickRegisterbtn();		
+		Thread.sleep(2000);
+		
+		test.log(Status.PASS, "Enter the First Name : "+ Errormsgfirstname);
+		Assert.assertEquals(Errormsgfirstname,"First name is required.");
+		
+		test.log(Status.PASS, "Enter the Last Name : "+ Errormsglastname);
+		Assert.assertEquals(Errormsglastname,"Last name is required.");
+		
+		test.log(Status.PASS, "Enter the Email Address : "+ Errormsgemail);
+		Assert.assertEquals(Errormsgemail,"Email is required.");
+		
+		test.log(Status.PASS, "Enter the Password  : "+ Errormsgpassword);
+		Assert.assertEquals(Errormsgpassword,"Password is required.");
+		
+		test.log(Status.PASS, "Enter the Confirm Passwd : "+ ErrormsgconfPwd);
+		Assert.assertEquals(ErrormsgconfPwd,"Password is required.");	
+		
+//     	String	actualWrongEmailMsg = registerPage.getWrongEmailMsg();
+//		Assert.assertEquals(actualWrongEmailMsg, wrongemailmsg1);
+//		test.log(Status.PASS, "Wrong Email Address is : "+ wrongemailmsg1);
+//	  	String	actualpwdnotmatchmsg = registerPage.getPasswordDoesntMatchMsg();
+//	 
+//	  	Assert.assertEquals(actualpwdnotmatchmsg, pwdnotmatchmsg);
+//	   test.log(Status.PASS, "Password not macth : "+ pwdnotmatchmsg);
 	}
 	
 	@AfterSuite
