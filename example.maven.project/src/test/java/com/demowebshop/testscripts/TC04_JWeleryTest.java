@@ -57,11 +57,11 @@ public class TC04_JWeleryTest extends BasePage {
 		CartPage.SetCartLink();
 
 		test.log(Status.PASS, "Verify the Shopping Cart message after alick on shoppingCart link");
-		Assert.assertEquals(CartPage.TextMsg, CartPage.TestVerify());
+		Assert.assertEquals(CartPage.TestVerify(), "Shopping cart");
 		Thread.sleep(2000);
 		
 		test.log(Status.PASS, "Verify the product we added in cart");
-		Assert.assertEquals(CartPage.Verifyproductname, CartPage.getproductname());
+		Assert.assertEquals(CartPage.getproductname(), "Create Your Own Jewelry" );
 		Thread.sleep(2000);
 //		test.log(Status.PASS, "Verify the amount of product what we added in cart");
 //		Assert.assertEquals(Jewelry_CartPage.Totalamount, CartPage.Amount());

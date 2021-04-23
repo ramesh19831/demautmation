@@ -19,7 +19,7 @@ public class Jewelry_CartPage {
 		driver.findElement(CartLink).click();
 	}
 	
-	public static By TextMsg = By.tagName("/html/body/div[4]/div[1]/div[4]/div/div/div[1]/h1");
+	public static By TextMsg = By.xpath("/html/body/div[4]/div[1]/div[4]/div/div/div[1]/h1");
 	
 	public String TestVerify() {
 		 String Gettitle = driver.findElement(TextMsg).getText();

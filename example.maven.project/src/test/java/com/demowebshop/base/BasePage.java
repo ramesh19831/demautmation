@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.beust.jcommander.Parameter;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -17,8 +19,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -62,7 +70,29 @@ public class BasePage {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); // static wait method
 	}
-
+	@BeforeTest
+	@Parameters("browser")
+	public void browserSetup(String browser) {
+		 
+		if (browser.equals("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			 driver = new ChromeDriver();
+		} else if (browser.equals("ff")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+		} else if (browser.equals("edge")) {
+			WebDriverManager.edgedriver().setup();
+				driver = new EdgeDriver();
+		} else {
+			WebDriverManager.iedriver().setup();
+			driver = new InternetExplorerDriver();
+		    
+		}
+		driver.get("http://demowebshop.tricentis.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); // static wait method
+		}
+		     
 	public void click(By xpath) {
 		driver.findElement(xpath).click();
 	}
@@ -72,6 +102,9 @@ public class BasePage {
 		driver.findElement(xpath).sendKeys(value);
 	}
 
+	public String getText(By prop) {
+		return driver.findElement(prop).getText();
+	}
 	public static int randomNumber() {
 
 		Random rand = new Random();
