@@ -63,7 +63,10 @@ public class TC01_LoginTest extends BasePage{
 
 	
 	@Test
-	public void LoginwithInvalidData() {
+	public void loginWithInvalidData() {
+		System.out.println("Login with invalid Credentials");
+		System.out.println("Login with invalid Credentials");
+		System.out.println("Login with invalid Credentials");
 		System.out.println("Login with invalid Credentials");
 	}
 	@AfterClass
