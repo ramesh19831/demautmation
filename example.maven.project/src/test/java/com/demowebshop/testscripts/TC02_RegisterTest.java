@@ -22,25 +22,25 @@ public class TC02_RegisterTest extends BasePage {
 	HomePage homePage;
 	RegisterPage registerPage;
 
-	@BeforeSuite
-	public void invoke() {
-		setup("http://demowebshop.tricentis.com/");
-		homePage = new HomePage(driver);
-		registerPage = new RegisterPage(driver);
-	}
+//	@BeforeSuite
+//	public void invoke() {
+//		setup("http://demowebshop.tricentis.com/");
+//		homePage = new HomePage(driver);
+//		registerPage = new RegisterPage(driver);
+//	}
 
-	@DataProvider(name = "register")
+	@DataProvider(name = "register", parallel = true)
 	public Object[][] loginData() {
 		return new Object[][] { { "Stephen", "Raj", "test", "Test@112", "Test@112" }, };
 	}
 
-	@DataProvider(name = "Invalidregister")
+	@DataProvider(name = "Invalidregister",  parallel = true)
 	public Object[][] invalidRegister() {
 		return new Object[][] { { "Stephen", "Raj", "8768003768234", "Test@112", "Test@", "Wrong email",
 				"The password and confirmation password do not match." }, };
 	}
 
-	@DataProvider(name = "EmptyData")
+	@DataProvider(name = "EmptyData",  parallel = true)
 	public Object[][] EmptyData() {
 		return new Object[][] { { "First name is required.", "Last name is required.", "Email is required.", 
 			"Password is required.", "Password is required." }, };
@@ -106,7 +106,8 @@ public class TC02_RegisterTest extends BasePage {
 	@Test(dataProvider = "EmptyData")
 	public void TS02_VerifyRegisterWithEmptyData(String Errormsgfirstname, String Errormsglastname,
 			String Errormsgemail, String Errormsgpassword, String ErrormsgconfPwd) throws InterruptedException {
-
+		homePage = new HomePage(driver);
+		registerPage = new RegisterPage(driver);
 		Thread.sleep(1000);
 		test = extent.createTest("TC02_Validate the Demo Web Shop RegistrationScreen with Empty Data");
 
@@ -137,8 +138,6 @@ public class TC02_RegisterTest extends BasePage {
 	@AfterSuite
 	public void closeBrowser() {
 		test.log(Status.PASS, "Closing the Browser");
-
 		extent.flush();
-		driver.close();
 	}
 }

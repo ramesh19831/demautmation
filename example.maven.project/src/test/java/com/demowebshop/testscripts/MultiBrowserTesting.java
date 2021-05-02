@@ -21,10 +21,12 @@ public class MultiBrowserTesting extends BasePage{
 		@Test(dataProvider = "login")
 		public void LoginDemoWebShopWithDataProviderWithStandardCode(String homePageTitle, String loginPageTitle,
 				String emailaddress, String password) throws InterruptedException {
+			Thread.sleep(2000);
 //			3. Verify the title of the home Page "Demo Web Shop"
 			String actualHomePageTitle = Title();
 			Assert.assertEquals(actualHomePageTitle, homePageTitle);
 //			4. Click on Login link
+			Thread.sleep(2000);
 			click(By.className("ico-login"));
 
 			Thread.sleep(1000);

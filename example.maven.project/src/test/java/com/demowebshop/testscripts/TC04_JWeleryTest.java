@@ -17,18 +17,21 @@ public class TC04_JWeleryTest extends BasePage {
 	Jewelry_Items_Page ItemsPage;
 	Jewelry_CartPage CartPage;
 
-	@BeforeSuite
-	public void invoke() {
-		setup("http://demowebshop.tricentis.com/");
-
-		JewelaryPage = new JweleryPage(driver);
-		ItemsPage = new Jewelry_Items_Page(driver);
-		CartPage = new Jewelry_CartPage(driver);
-	}
+//	@BeforeSuite
+//	public void invoke() {
+//		setup("http://demowebshop.tricentis.com/");
+//
+//		JewelaryPage = new JweleryPage(driver);
+//		ItemsPage = new Jewelry_Items_Page(driver);
+//		CartPage = new Jewelry_CartPage(driver);
+//	}
 
 	@Test
 	public void TC001_VerifytheJewelaryProducts() throws InterruptedException {
 
+		JewelaryPage = new JweleryPage(driver);
+		ItemsPage = new Jewelry_Items_Page(driver);
+		CartPage = new Jewelry_CartPage(driver);
 		test = extent.createTest("TC001_Validate the Demo Web Shop_Jewelry Prodcuts in Jewelay page");
 		test.log(Status.PASS, "Click on Jewelry Link");
 		JewelaryPage.Clickjewelarylink();
@@ -77,9 +80,7 @@ public class TC04_JWeleryTest extends BasePage {
 	@AfterSuite
 	public void closeBrowser() {
 		test.log(Status.PASS, "Closing the Browser");
-
 		extent.flush();
-		driver.close();
 	}
 
 }

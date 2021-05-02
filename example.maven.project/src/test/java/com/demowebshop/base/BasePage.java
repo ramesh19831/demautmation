@@ -24,6 +24,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -97,6 +98,11 @@ public class BasePage {
 		driver.findElement(xpath).click();
 	}
 
+	@AfterTest
+	public void closeBrowser() {
+		driver.close();
+//		driver.quit();
+	}
 	public void type(By xpath, String value) {
 		driver.findElement(xpath).clear();
 		driver.findElement(xpath).sendKeys(value);

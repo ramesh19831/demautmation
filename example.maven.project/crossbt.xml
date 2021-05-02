@@ -4,20 +4,21 @@
 	<test name="Chrome Test"  preserve-order="true">
 		<parameter name="browser" value="Chrome"></parameter>
 		<classes>
-			<class name="com.demowebshop.testscripts.MultiBrowserTesting" />
+			<class name="com.demowebshop.testscripts.TC02_RegisterTest" />
+			<class name="com.demowebshop.testscripts.TC04_JWeleryTest" />
 		</classes>
 	</test> <!-- Test -->
-	<test name="Firefox"  preserve-order="true">
+	<!-- <test name="Firefox"  preserve-order="true">
 		<parameter name="browser" value="ff"></parameter>
 		<classes>
 			<class name="com.demowebshop.testscripts.MultiBrowserTesting" />
 		</classes>
-	</test> <!-- Test -->
+	</test> Test
 
 	<test name="edge"  preserve-order="true">
 		<parameter name="browser" value="edge"></parameter>
 		<classes>
 			<class name="com.demowebshop.testscripts.MultiBrowserTesting" />
 		</classes>
-	</test> <!-- Test -->
+	</test> Test -->
 </suite> <!-- Suite -->
